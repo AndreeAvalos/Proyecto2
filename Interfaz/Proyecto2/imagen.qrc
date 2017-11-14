@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Imagenes/localizacion-tienda-ropa.png</file>
+        <file>Imagenes/210485.png</file>
+        <file>Imagenes/img_evaluacion_ipo.png</file>
+        <file>Imagenes/familia.png</file>
+        <file>Imagenes/productos.jpg</file>
+        <file>Imagenes/medicina.png</file>
+        <file>Imagenes/agregarFamilia.png</file>
+        <file>Imagenes/agregarPersona.png</file>
+        <file>Imagenes/eliminar.png</file>
+        <file>Imagenes/mas.png</file>
+        <file>Imagenes/modificar.png</file>
+        <file>Imagenes/ubicacion.png</file>
+    </qresource>
+</RCC>
