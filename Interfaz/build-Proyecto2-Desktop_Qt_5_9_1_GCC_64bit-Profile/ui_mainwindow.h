@@ -672,7 +672,7 @@ public:
         pushButton_18->setGeometry(QRect(380, 0, 89, 25));
         pushButton_19 = new QPushButton(page_14);
         pushButton_19->setObjectName(QStringLiteral("pushButton_19"));
-        pushButton_19->setGeometry(QRect(380, 60, 89, 25));
+        pushButton_19->setGeometry(QRect(358, 60, 111, 25));
         pushButton_20 = new QPushButton(page_14);
         pushButton_20->setObjectName(QStringLiteral("pushButton_20"));
         pushButton_20->setGeometry(QRect(400, 110, 89, 81));
@@ -863,7 +863,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(3);
-        dock_albergue->setCurrentIndex(2);
+        dock_albergue->setCurrentIndex(3);
         stackedWidget_2->setCurrentIndex(0);
         dock_familia->setCurrentIndex(1);
 

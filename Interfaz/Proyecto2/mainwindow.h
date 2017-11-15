@@ -132,6 +132,11 @@ private slots:
 
     void on_pushButton_37_clicked();
 
+    void on_cIndividuo_modificar_activated(const QString &arg1);
+
+    void on_pushButton_22_clicked();
+    void llenarCombo2(nodoABB *pivote);
+
 private:
     Ui::MainWindow *ui;
     QByteArray archivo;

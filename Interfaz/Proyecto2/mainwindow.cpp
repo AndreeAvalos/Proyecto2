@@ -617,10 +617,12 @@ void MainWindow::on_btn_agregarPersona_clicked()
 
 void MainWindow::on_pushButton_18_clicked()
 {
+    ui->Cfamilia_modificar->clear();
+
     if(lstfamilias.first==nullptr){}
     else{
    nodo2 *temporal = lstfamilias.first;
-   ui->Cfamilia_modificar->clear();
+
    while(temporal!=nullptr){
        ui->Cfamilia_modificar->addItem(temporal->getDato().codigo);
        temporal = temporal->siguiente;
@@ -654,11 +656,15 @@ void MainWindow::on_cIndividuo_modificar_currentIndexChanged(int index)
     QString codigo = ui->cIndividuo_modificar->itemText(index);
     QString fami= ui->Cfamilia_modificar->itemText(key);
     //qInfo()<<codigo<<"-"<<fami;
-    bool temporal = lstfamilias.buscar(fami).arbol->existe(codigo.toInt(),lstfamilias.buscar(fami).arbol->raiz);
-   // qInfo()<<temporal;
+    Familia temp= lstfamilias.buscar(fami);
+
+    bool temporal = temp.arbol->existe(codigo.toInt(),temp.arbol->raiz);
+
+    qInfo()<<temporal;
+
     if(temporal==true){
-        Persona  *nuevo = lstfamilias.buscar(fami).arbol->buscar(codigo.toInt());
-        //qInfo()<< nuevo.apellido;
+        Persona  *nuevo = temp.arbol->buscar(codigo.toInt());
+        qInfo()<< nuevo->nombre;
         ui->nombre_modificar->setText(nuevo->nombre);
         ui->apellidos_modificar->setText(nuevo->apellido);
         ui->edad_modificar->setText(nuevo->edad);
@@ -1023,9 +1029,13 @@ void MainWindow::on_pushButton_25_clicked()
      ficheroSalida << archivo.toStdString();
      ficheroSalida.close();
 }
-
+//Boton para eliminar individuo
 void MainWindow::on_eliminar_familia_2_clicked()
 {
+    QString codigo = ui->Cindividuo_eliminar->itemText(key2);
+    QString fami= ui->cFamilia_eliminar->itemText(key);
+    //qInfo()<<codigo<<"-"<<fami;
+    Familia temp= lstfamilias.buscar(fami);
 
 }
 //Boton para poder insertar una donacion
@@ -1346,4 +1356,29 @@ void MainWindow::on_pushButton_37_clicked()
 {
     ui->textEdit_2->clear();
     ui->textEdit_2->setText(Tabla->imprimir());
+}
+
+void MainWindow::on_cIndividuo_modificar_activated(const QString &arg1)
+{
+
+}
+
+// metodo para traer familias
+void MainWindow::on_pushButton_22_clicked()
+{
+    ui->Cindividuo_eliminar->clear();
+    QString codigo = ui->cFamilia_eliminar->itemText(key);
+    llenarCombo2(lstfamilias.buscar(codigo).arbol->raiz);
+}
+//metodo para llenar combo2
+void MainWindow::llenarCombo2(nodoABB *pivote)
+{
+    if(pivote==nullptr)
+        return;
+
+    llenarCombo2(pivote->izquierda);
+   // qInfo()<<'\t'<<pivote->key;
+    ui->Cindividuo_eliminar->addItem(QString::number(pivote->key));
+    llenarCombo2(pivote->derecha);
+
 }

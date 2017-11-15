@@ -69,17 +69,17 @@ public:
     }
 
     bool existe(int valor, nodoABB *pivote){
-        if(pivote==nullptr)
-            return false;
+        //if(pivote==nullptr)
+           // return false;
         if(pivote->key==valor)
             return true;
-        else if(valor<pivote->key)
-             existe(valor,pivote->izquierda);
-        else if(valor>pivote->key)
-             existe(valor,pivote->derecha);
+
+        if(valor<pivote->key)
+              return existe(valor,pivote->izquierda);
+        if(valor>pivote->key)
+              return existe(valor,pivote->derecha);
         else
             return false;
-        return false;
     }
 
     //Metodo de impresion de arbol;
@@ -143,11 +143,10 @@ private:
             return pivote->dato;
         else{
             if(valor<pivote->key)
-            search(valor,pivote->izquierda);
+            return search(valor,pivote->izquierda);
             else if(valor>pivote->key)
-            search(valor,pivote->derecha);
+            return search(valor,pivote->derecha);
         }
-        return NULL;
     }
     void impreArbol(nodoABB *nodo, nodoABB *padre){
         if(nodo!=nullptr){
