@@ -12,5 +12,6 @@
         <file>Imagenes/mas.png</file>
         <file>Imagenes/modificar.png</file>
         <file>Imagenes/ubicacion.png</file>
+        <file>Imagenes/entrega.png</file>
     </qresource>
 </RCC>

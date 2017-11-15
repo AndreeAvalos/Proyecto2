@@ -614,7 +614,7 @@ public class ArbolB {
     public void printGraphviz() throws IOException {
         NodoArbolB auxNode = this.raiz;
 
-        PrintWriter sw = new PrintWriter(new FileWriter("/home/andree/Escritorio/EDD Archivos P2/ArbolB.txt"));
+        PrintWriter sw = new PrintWriter(new FileWriter("/home/andree/Escritorio/EDDArchivos/ArbolB.txt"));
         sw.println("digraph G {");
         sw.println("\t rankdir = TB; \n");
         sw.println("\t node[shape=record]; \n");
@@ -626,8 +626,8 @@ public class ArbolB {
         sw.println("\t } \n");
         sw.close();
         String dotPath = "dot";
-        String fileInputPath = "/home/andree/Escritorio/EDD Archivos P2/ArbolB.txt";
-        String fileOutputPath = "/home/andree/Escritorio/EDD Archivos P2/ArbolB.png";
+        String fileInputPath = "/home/andree/Escritorio/EDDArchivos/ArbolB.txt";
+        String fileOutputPath = "/home/andree/Escritorio/EDDArchivos/ArbolB.png";
         String tParam = "-Tpng";
         String tOParam = "-o";
         String[] cmd = new String[5];

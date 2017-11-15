@@ -31,6 +31,7 @@ public:
     int getTamTabla();
     bool eliminar(int id,QString nombre);
     void graficarTabla();
+    void Reduce_AND_Delete(int codigo,QString nombre,int unidades);
 private:
     int TAMTABLA;
     int numElementos;

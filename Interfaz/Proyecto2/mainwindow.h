@@ -120,6 +120,18 @@ private slots:
 
     void on_puntob_currentIndexChanged(int index);
 
+    void on_pushButton_33_clicked();
+
+    void on_pushButton_34_clicked();
+
+    void on_Carchivo_informacion_clicked();
+
+    void on_pushButton_35_clicked();
+
+    void on_pushButton_36_clicked();
+
+    void on_pushButton_37_clicked();
+
 private:
     Ui::MainWindow *ui;
     QByteArray archivo;
@@ -129,6 +141,7 @@ private:
     int key2 =0;
     QWebView *view = new QWebView(nullptr);
     TablaHash *Tabla = new TablaHash(29);
+    ListaDoble *lstDonaciones = new ListaDoble();
 
 
 

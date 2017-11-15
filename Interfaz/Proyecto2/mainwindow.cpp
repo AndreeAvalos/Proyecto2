@@ -759,6 +759,11 @@ void MainWindow::on_pushButton_23_clicked()
         delete reply;
     }
 
+    ofstream ff;
+     ff.open ("/home/andree/Escritorio/EDDArchivos/localidades.json");
+     ff <<json.toStdString();
+     ff.close();
+
     doc=QJsonDocument::fromJson(json);
     QFile defaultTextFile("/home/andree/Escritorio/EDDArchivos/mapa.html");
     defaultTextFile.open(QIODevice::ReadOnly);
@@ -1238,4 +1243,107 @@ void MainWindow::on_puntoa_currentIndexChanged(int index)
 void MainWindow::on_puntob_currentIndexChanged(int index)
 {
     key2=index;
+}
+
+void MainWindow::on_pushButton_33_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(6);
+}
+
+//boton para mandar donacion
+void MainWindow::on_pushButton_34_clicked()
+{
+    QString dpi= ui->dpi_donacion->text();
+    QString nombres = ui->nombres_donacion->text();
+    QString apellidos = ui->apellidos_donacion->text();
+    QString fecha = ui->fecha_donacion->text();
+    QString monto = ui->monto_donacion->text();
+
+    QString donacion = tr("%1,%2,%3,%4,%5").arg(dpi,nombres,apellidos,fecha,monto);
+
+    QEventLoop eventLoop;
+
+    QNetworkAccessManager mgr;
+    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+
+    QNetworkRequest req( QUrl( QString("http://localhost:8080/WebService/app/setDonacion") ) );
+    req.setRawHeader("Content-Type", "application/json");
+    QNetworkReply *reply = mgr.post(req,donacion.toUtf8());
+
+    eventLoop.exec();
+
+
+    if (reply->error() == QNetworkReply::NoError) {
+        //success
+        QNetworkReply *respuesta= mgr.get(req);
+        eventLoop.exec();
+        qDebug() << "Success" << respuesta->readAll();
+
+        delete respuesta;
+        delete reply;
+
+    } else {
+        //failure
+        qDebug() << "Failure" <<reply->errorString();
+        delete reply;
+    }
+
+}
+
+void MainWindow::on_Carchivo_informacion_clicked()
+{
+    QString fileNames = QFileDialog::getOpenFileName(this, tr("Open File"),"/path/to/file/",tr("JSON Files (*.json)"));
+    cargarArchivo(fileNames);
+    ui->archivo_informacion->setText(fileNames);
+
+}
+
+//BOTON para agregar a lista de donaciones
+void MainWindow::on_pushButton_35_clicked()
+{
+    QString codigo = ui->categoria_entrega->text();
+    QString nombre = ui->nombre_entrega->text();
+    QString unidad = ui->unidades_entrega->text();
+    //ui->lst_entrega->clear();
+    ui->lst_entrega->append(codigo+" --- "+nombre+" --- "+unidad);
+    //bool ok;
+    //qInfo()<<unidad.toInt();
+
+    Donacion *temp = new Donacion(codigo,nombre,unidad.toInt());
+    qInfo()<<temp->unidades;
+    lstDonaciones->agregar(temp);
+
+}
+
+void MainWindow::on_pushButton_36_clicked()
+{
+    ui->lst_entrega->clear();
+    QString codigo;
+    QString nombre;
+    int unidad;
+
+    Codificador cod;
+    nodoD *temp = lstDonaciones->first;
+
+    while(temp!=nullptr){
+        codigo=temp->dato->categoria;
+        nombre=temp->dato->nombre;
+        unidad=temp->dato->unidades;
+        int codi = cod.getCodigo(codigo);
+        //qInfo()<<"Unidades paso 1 : "<<unidad;
+        Tabla->Reduce_AND_Delete(codi,nombre,unidad);
+
+        temp=temp->siguiente;
+    }
+
+    //lstDonaciones->borrarLista();
+    lstDonaciones=new ListaDoble();
+
+
+}
+//Boton para actualizar tabla
+void MainWindow::on_pushButton_37_clicked()
+{
+    ui->textEdit_2->clear();
+    ui->textEdit_2->setText(Tabla->imprimir());
 }

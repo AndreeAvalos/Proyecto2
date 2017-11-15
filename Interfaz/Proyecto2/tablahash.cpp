@@ -131,7 +131,7 @@ void TablaHash::graficarTabla()
         ficheroSalida<<";\n";
 
         if(cont2==TAMTABLA-1){
-            qInfo()<<"Que esta pasando aqui doctor garcia";
+            //qInfo()<<"Que esta pasando aqui doctor garcia";
             for(int i = 0; i < TAMTABLA; i++)
             {
                 if(Tabla[i]){
@@ -148,7 +148,44 @@ void TablaHash::graficarTabla()
         ficheroSalida<<";";
         ficheroSalida<<"}";
         ficheroSalida.close();
-        system("dot -Tpng /home/andree/Escritorio/EDDArchivos/TablaHash.txt -o /home/andree/Escritorio/EDDArchivos/TablaHash.png");
+        int num = system("dot -Tpng /home/andree/Escritorio/EDDArchivos/TablaHash.txt -o /home/andree/Escritorio/EDDArchivos/TablaHash.png");
+}
+
+void TablaHash::Reduce_AND_Delete(int codigo, QString nombre, int unidades)
+{
+    //comprobamos si el dato existe
+    if(existe(codigo)==true){
+        //instanciamos la lista que contiene el nodo
+        ListaDoble *lst = getDonacion(codigo);
+        //verificamos si el nombre existe en la lista
+        if(lst->existe(nombre)==true){
+            //instanciamos el valor de la lista asociada al nombre
+            Donacion *temp = lst->buscar(nombre);
+            //comprobamos si el numero de unidades es mayor al numero de unidades disponibles
+            if(temp->unidades>=unidades){
+                //qInfo()<<"Unidades iniciales: "<<temp->unidades<<" Unidades a restar: "<<unidades;
+                //le restamos las unidades
+                temp->unidades= temp->unidades-unidades;
+
+                //qInfo()<<"Restantes: "<<temp->unidades;
+                //si las unidades es menor o igual a 0
+                if(temp->unidades<=0){
+                    //procedemos a eliminar el nodo en la lista
+                    lst->borrar(nombre);
+                }else{
+                    return;
+                }
+            }
+        }else
+            return;
+
+        //Si depues de borrar ya no existe ningun recurso entonces borrar espacio en tabla
+        if(lst->first==nullptr){
+            borrar(codigo);
+        }
+
+    }else
+        return;
 }
 
 int TablaHash::posicionTabla(int id)

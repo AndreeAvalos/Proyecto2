@@ -54,14 +54,12 @@ SOURCES       = ../Proyecto2/main.cpp \
 		../Proyecto2/mainwindow.cpp \
 		../Proyecto2/persona.cpp \
 		../Proyecto2/familia.cpp \
-		../Proyecto2/producto.cpp \
 		../Proyecto2/tablahash.cpp qrc_imagen.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		persona.o \
 		familia.o \
-		producto.o \
 		tablahash.o \
 		qrc_imagen.o \
 		moc_mainwindow.o
@@ -261,7 +259,6 @@ DIST          = /home/andree/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/spec_pre.prf 
 		../Proyecto2/mainwindow.cpp \
 		../Proyecto2/persona.cpp \
 		../Proyecto2/familia.cpp \
-		../Proyecto2/producto.cpp \
 		../Proyecto2/tablahash.cpp
 QMAKE_TARGET  = Proyecto2
 DESTDIR       = 
@@ -671,7 +668,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents ../Proyecto2/imagen.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/andree/Qt5.9.1/5.9.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Proyecto2/mainwindow.h ../Proyecto2/abb.h ../Proyecto2/persona.h ../Proyecto2/listasimple.h ../Proyecto2/listasimple2.h ../Proyecto2/familia.h ../Proyecto2/codificador.h ../Proyecto2/listadoble.h ../Proyecto2/tablahash.h ../Proyecto2/donacion.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto2/main.cpp ../Proyecto2/mainwindow.cpp ../Proyecto2/persona.cpp ../Proyecto2/familia.cpp ../Proyecto2/producto.cpp ../Proyecto2/tablahash.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto2/main.cpp ../Proyecto2/mainwindow.cpp ../Proyecto2/persona.cpp ../Proyecto2/familia.cpp ../Proyecto2/tablahash.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Proyecto2/mainwindow.ui $(DISTDIR)/
 
 
@@ -709,6 +706,7 @@ qrc_imagen.cpp: ../Proyecto2/imagen.qrc \
 		../Proyecto2/Imagenes/medicina.png \
 		../Proyecto2/Imagenes/localizacion-tienda-ropa.png \
 		../Proyecto2/Imagenes/familia.png \
+		../Proyecto2/Imagenes/entrega.png \
 		../Proyecto2/Imagenes/ubicacion.png \
 		../Proyecto2/Imagenes/img_evaluacion_ipo.png \
 		../Proyecto2/Imagenes/agregarPersona.png \
@@ -1534,9 +1532,6 @@ familia.o: ../Proyecto2/familia.cpp ../Proyecto2/familia.h \
 		../Proyecto2/persona.h \
 		/home/andree/Qt5.9.1/5.9.1/gcc_64/include/QtCore/QString
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o familia.o ../Proyecto2/familia.cpp
-
-producto.o: ../Proyecto2/producto.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o producto.o ../Proyecto2/producto.cpp
 
 tablahash.o: ../Proyecto2/tablahash.cpp ../Proyecto2/tablahash.h \
 		../Proyecto2/listadoble.h \

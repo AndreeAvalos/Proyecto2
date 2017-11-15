@@ -52,6 +52,7 @@ struct ListaSimple2{
             }else
                 temporal=temporal->siguiente;
         }
+        return Familia("nulo");
     }
 
     bool existe(QString val){

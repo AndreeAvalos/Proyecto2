@@ -34,6 +34,15 @@ struct ListaDoble{
         this->last=nullptr;
     }
 
+    void borrarLista(){
+        delete first;
+        delete last;
+        first=nullptr;
+        last=nullptr;
+        size=0;
+
+    }
+
     bool agregar(Donacion *donacion){
         nodoD *nuevo = new nodoD(donacion);
         if(first==nullptr){
@@ -90,6 +99,7 @@ struct ListaDoble{
                 if(temporal==first){
                     first=temporal->siguiente;
                     delete temporal;
+                    size--;
                     return true;
                 }else{
                     if(temporal->siguiente==nullptr){
@@ -101,6 +111,7 @@ struct ListaDoble{
                         delete temporal;
                         //qInfo()<< "el siguiente no es nulo es: "<<temporal->siguiente->dato->nombre;
                     }
+                    size--;
                     return true;}
             }else
                 temporal=temporal->siguiente;
@@ -162,6 +173,17 @@ struct ListaDoble{
          //ficheroSalida.close();
          //system("dot -Tpng /home/andree/Escritorio/lista.txt -o /home/andree/Escritorio/lista.png");
          return resul;
+    }
+
+    Donacion * buscar(QString nombre){
+        nodoD *temporal = first;
+        while(temporal!=nullptr){
+            if(temporal->dato->nombre==nombre)
+                return temporal->dato;
+            else
+                temporal=temporal->siguiente;
+        }
+        return NULL;
     }
 };
 

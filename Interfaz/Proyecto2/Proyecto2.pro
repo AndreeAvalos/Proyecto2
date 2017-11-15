@@ -31,7 +31,6 @@ SOURCES += \
         mainwindow.cpp \
     persona.cpp \
     familia.cpp \
-    producto.cpp \
     tablahash.cpp
 
 

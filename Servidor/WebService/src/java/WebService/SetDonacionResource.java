@@ -47,6 +47,12 @@ public class SetDonacionResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
         //TODO return proper representation object
+        ArbolB arbol = ArbolB.getInstancia();
+        try {
+            arbol.printGraphviz();
+        } catch (IOException ex) {
+            Logger.getLogger(SetDonacionResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "Agreagado con Exito";
     }
 
@@ -57,11 +63,7 @@ public class SetDonacionResource {
         System.out.println(datos);
         new agregarDonacion().agregar(datos);
         ArbolB temporal = ArbolB.getInstancia();
-        try {
-            temporal.printGraphviz();
-        } catch (IOException ex) {
-            Logger.getLogger(SetDonacionResource.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     /**
