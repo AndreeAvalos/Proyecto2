@@ -47,7 +47,8 @@ public class GetGrafoResource {
     public String getJson() {
         //TODO return proper representation object
         Grafo grafito = Grafo.getInstancia();
-        NodoGrafo nuevo = new NodoGrafo("1", "c01", "1234", "archivo", 2.3, 2.4);
+        
+        /*NodoGrafo nuevo = new NodoGrafo("1", "c01", "1234", "archivo", 2.3, 2.4);
         Arista arista = new Arista("c02", 1);
         nuevo.getAristas().add(arista);
         arista = new Arista("c03", 2.5);
@@ -65,9 +66,10 @@ public class GetGrafoResource {
         grafito.agregarNodo(nuevo);
 
         nuevo = new NodoGrafo("4", "c04", "1234", "archivo", 7.60, 3.2);
-        grafito.agregarNodo(nuevo);
+        grafito.agregarNodo(nuevo);*/
 
-        grafito.getNodos();
+        //grafito.getNodos();
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         String jsonString = gson.toJson(grafito.getNodos());

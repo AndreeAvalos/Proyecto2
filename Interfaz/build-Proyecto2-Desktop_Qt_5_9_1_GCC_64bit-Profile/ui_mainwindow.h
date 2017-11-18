@@ -862,7 +862,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
         dock_albergue->setCurrentIndex(3);
         stackedWidget_2->setCurrentIndex(0);
         dock_familia->setCurrentIndex(1);

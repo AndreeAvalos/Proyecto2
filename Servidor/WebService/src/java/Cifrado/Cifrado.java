@@ -46,7 +46,7 @@ public class Cifrado {
     public void Cifrar(String cadena) {
         archivo_cifrado = "";
         String[] numLineas = cadena.split(";");
-        
+
         for (int i = 0; i < numLineas.length; i++) {
             String numLinea = numLineas[i];
             String[] tokens = numLinea.split(",");
@@ -188,7 +188,7 @@ public class Cifrado {
                     resultado += "#";
                     break;
                 case '7':
-                    resultado += "-";
+                    resultado += ":";
                     break;
                 case '8':
                     resultado += "+";
@@ -202,6 +202,8 @@ public class Cifrado {
                 case '/':
                     resultado += "_";
                     break;
+                case '-':
+                    resultado += ">";
                 default:
                     //resultado +=cadena.charAt(i);
                     break;
@@ -313,7 +315,7 @@ public class Cifrado {
                 case '#':
                     resultado += "6";
                     break;
-                case '-':
+                case ':':
                     resultado += "7";
                     break;
                 case '+':
@@ -328,6 +330,8 @@ public class Cifrado {
                 case '_':
                     resultado += "/";
                     break;
+                case '-':
+                    resultado += ">";
                 default:
                     //resultado +=cadena.charAt(i);
                     break;

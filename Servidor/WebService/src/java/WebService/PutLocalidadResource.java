@@ -66,10 +66,6 @@ public class PutLocalidadResource {
             JsonObject gsonObj = obj.getAsJsonObject();
 
             // Primitives elements of object
-            int dorsal = gsonObj.get("dorsal").getAsInt();
-            String name = gsonObj.get("name").getAsString();
-            String team = gsonObj.get("team").getAsString();
-
             String codigo = gsonObj.get("codigo").getAsString();
             String nombre = gsonObj.get("nombre").getAsString();
             String password = gsonObj.get("password").getAsString();

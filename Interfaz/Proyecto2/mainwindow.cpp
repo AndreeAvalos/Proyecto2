@@ -295,7 +295,7 @@ string MainWindow::Codificar(string str)
             resultado+="#";
             break;
         case 0x37:
-            resultado+="-";
+            resultado+=":";
             break;
         case 0x38:
             resultado+="+";
@@ -310,6 +310,8 @@ string MainWindow::Codificar(string str)
         case '/':
             resultado+="_";
             break;
+        case '-':
+            resultado+=">";
         default:
             //resultado+=str[i];
             break;
@@ -430,7 +432,7 @@ string MainWindow::Decodificar(string str)
         case '#':
             resultado+="6";
             break;
-        case '-':
+        case ':':
             resultado+="7";
             break;
         case '+':
@@ -445,6 +447,8 @@ string MainWindow::Decodificar(string str)
         case '_':
             resultado+="/";
             break;
+        case '>':
+            resultado+="-";
         default:
             //resultado+=str[i];
             break;
@@ -1146,8 +1150,8 @@ void MainWindow::on_pushButton_30_clicked()
     QString password = ui->pass_locacion->text();
     QString nArchivo = ui->archivo_locacion->text();
 
-    json=tr("{{\"nombre\"​:\"%1\",\"codigo\"​:\"%2\",\"password\"​:\"%3\",\"lat\"​:%4,\"lng\"​:%5,\"archivo\"​:\"%6\"}").arg(nombre,codigo,password,QString::number(latitud),QString::number(longitud),nArchivo);
-
+    json=tr("{\"nombre\":\"%1\",\"codigo\"​:\"%2\",\"password\"​:\"%3\",\"lat\"​:%4,\"lng\"​:%5,\"archivo\"​:\"%6\"}").arg(nombre,codigo,password,QString::number(latitud),QString::number(longitud),nArchivo);
+    qInfo()<<json;
     QEventLoop eventLoop;
 
     QNetworkAccessManager mgr;
